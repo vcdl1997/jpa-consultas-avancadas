@@ -1,9 +1,13 @@
 package br.com.loja.modelo;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +18,9 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	
+	@OneToMany(mappedBy = "categoria")
+	private Set<Produto> produto = new HashSet<>();
 	
 	public Categoria() {
 	}
@@ -32,5 +39,9 @@ public class Categoria {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Set<Produto> getProduto() {
+		return produto;
 	}
 }

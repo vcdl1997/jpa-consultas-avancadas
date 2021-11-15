@@ -16,8 +16,6 @@ public class Dao<G> {
 		return em;
 	}
 
-
-
 	public void cadastrar(G g) {
 		this.em.persist(g);
 	}

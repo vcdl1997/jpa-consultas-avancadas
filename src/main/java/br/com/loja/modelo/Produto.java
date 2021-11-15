@@ -3,8 +3,8 @@ package br.com.loja.modelo;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,18 +19,15 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Long id;
 	private String nome;
-	
-	@Column(name = "desc")
 	private String descricao;
 	private Double preco;
 	private LocalDate dataCadastro = LocalDate.now();
-	
 	/*
 	 * Quando for uma enumeração, 
 	 * devemos configurar o seu salvamento como string, 
 	 * por meio da annotation @Enumerated(EnumType.STRING)
 	 * */
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Categoria categoria;
 	
 	public Produto() {
